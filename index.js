@@ -12,10 +12,11 @@ app.get('/studio-ghibli', (req, res) => {
 })
 
   app.get('/studio-ghibli/:id', (req, res) => {
-    const filmItem = ghibliFilms.find(film => film.id === Number(req.params.id));
-    res.json(filmItem);
+    const film_item = ghibliFilms.find(film => film.id === req.params.id);
+    res.json(film_item);
   });
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
 });
+
