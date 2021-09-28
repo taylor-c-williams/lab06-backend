@@ -1,23 +1,21 @@
-const express = require('express')
-const app = express()
-const port = 3000
-const cors = require('cors')
+const express = require('express');
+const app = express();
+const port = 3000;
+const cors = require('cors');
 
-const { ghibliFilms } = require ('./data.js')
+const { ghibliFilms } = require ('./data.js');
 
-app.use(cors())
+app.use(cors());
 
 app.get('/studio-ghibli', (req, res) => {
-  res.json({ghibliFilms})
+  res.json(ghibliFilms);
 })
 
-app.get('/studio-ghibli/:id', (req, res) => {
-    res.json({
-        id: req.params.id
-    })
-  })
+  app.get('/studio-ghibli/:id', (req, res) => {
+    const filmItem = ghibliFilms.find(film => film.id === Number(req.params.id));
+    res.json(filmItem);
+  });
 
 app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`)
-})
-
+  console.log(`Example app listening at http://localhost:${port}`);
+});
